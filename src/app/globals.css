@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Regular";
+  src: local("Doner-Regular");
+  src: url("/public/doner-regulardisplay.otf") format("opentype");
+}
+.font-doner {
+  font-family: "Doner", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
