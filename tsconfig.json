@@ -23,7 +23,8 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/utils.js"
+    "lib/utils.ts",
+    "src/components/ui/floating-dock.jsx"
   ],
   "exclude": ["node_modules"]
 }

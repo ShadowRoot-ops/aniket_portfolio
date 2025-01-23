@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar.jsx";
-import { BackgroundBeamsDemo } from "../components/BackgroundBeamsDemo";
+import TransitionProvider from "../components/transitionProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,15 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="w-screen h-screen bg-gradient-to-r from-[#fdfcfb] to-[#e2d1c3]">
-          <div className="h-24">
-            <Navbar />
-          </div>
-          <div className="h-[calc(100vh-6rem)]">
-            <BackgroundBeamsDemo />
-            {children}
-          </div>
-        </div>
+        <TransitionProvider>{children}</TransitionProvider>
       </body>
     </html>
   );

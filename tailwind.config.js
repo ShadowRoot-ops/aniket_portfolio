@@ -31,6 +31,7 @@ module.exports = {
         customblack: "#1a1a1a",
         customred: "#d62828",
         customblue: "#22264b",
+        customgrey: "#242126",
       },
       fontFamily: {
         primaryregular: ["Regular"],
