@@ -1,9 +1,9 @@
 {
-  "name": "lama-dev-portfolio-starter",
+  "name": "aniket_portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "aniket",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
