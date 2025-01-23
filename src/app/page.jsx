@@ -1,35 +1,54 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  ChevronDown,
-  Github,
-  Linkedin,
-  Mail,
-  ExternalLink,
-} from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 function App() {
   const [startScroll, setStartScroll] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const words = ["Crafting", "Code", "&", "Building", "Dreams"];
 
   useEffect(() => {
+    // Set initial window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const timer = setTimeout(() => {
       setStartScroll(true);
     }, 3000);
 
     const handleMouseMove = (e) => {
+      // Remove the type annotation here
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const calculateTransform = () => {
+    if (windowSize.width === 0) return "translate(0px, 0px)";
+    return `translate(${(mousePosition.x - windowSize.width / 2) * 0.02}px, ${
+      (mousePosition.y - windowSize.height / 2) * 0.02
+    }px)`;
+  };
 
   return (
     <div className="bg-black min-h-screen relative">
@@ -37,9 +56,7 @@ function App() {
       <div
         className="absolute inset-0 bg-customgrey"
         style={{
-          transform: `translate(${
-            (mousePosition.x - window.innerWidth / 2) * 0.02
-          }px, ${(mousePosition.y - window.innerHeight / 2) * 0.02}px)`,
+          transform: calculateTransform(),
           transition: "transform 0.2s ease-out",
         }}
       />
@@ -136,8 +153,6 @@ function App() {
               </Link>
             </div>
           </div>
-
-          {/* Scroll Indicator */}
         </div>
       </motion.div>
 
